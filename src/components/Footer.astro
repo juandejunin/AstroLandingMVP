@@ -3,70 +3,101 @@ import TwitterIcon from "../icons/Twitter.astro";
 import FacebookIcon from "../icons/Facebook.astro";
 import InstagramIcon from "../icons/Instagram.astro";
 import TiktokIcon from "../icons/TikTok.astro";
+
+const { 
+  footerLegalTitle, 
+  footerTermsText, 
+  footerTermsUrl, 
+  footerPrivacyText, 
+  footerPrivacyUrl,
+  footerFacebookUrl,
+  footerTwitterUrl,
+  footerInstagramUrl,
+  footerTiktokUrl,
+  footerCreditsDeveloper,
+  footerCreditsYear,
+  footerCreditsText 
+} = Astro.props;
+
+// Definir variables con valores por defecto
+const legalTitle = footerLegalTitle || "Legal";
+const termsText = footerTermsText || "Términos y Condiciones";
+const termsUrl = footerTermsUrl || "/terms-and-conditions";
+const privacyText = footerPrivacyText || "Política de Privacidad";
+const privacyUrl = footerPrivacyUrl || "/privacy-policy";
+
+const facebookUrl = footerFacebookUrl || "https://facebook.com";
+const twitterUrl = footerTwitterUrl || "https://twitter.com";
+const instagramUrl = footerInstagramUrl || "https://instagram.com";
+const tiktokUrl = footerTiktokUrl || "https://tiktok.com";
+
+const creditsDeveloper = footerCreditsDeveloper || "Juan Amieva";
+const creditsYear = footerCreditsYear || "2025";
+const creditsText = footerCreditsText || "Todos los derechos reservados";
 ---
 
 <footer class="bg-primary text-gray-300 py-8">
   <div class="container mx-auto px-6 md:px-12">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-      <!-- 🔹 Sección 1: Condiciones legales -->
+      <!-- Sección 1: Condiciones legales -->
       <div class="text-center md:text-left">
-        <h2 class="text-lg font-semibold text-white">Legal</h2>
+        <h2 class="text-lg font-semibold text-white">{legalTitle}</h2>
         <ul class="mt-2 space-y-2">
           <li>
-            <a
-              href="/terms-and-conditions"
-              class="hover:text-blue-400 transition">Términos y Condiciones</a>
+            <a href={termsUrl} class="hover:text-blue-400 transition">{termsText}</a>
           </li>
           <li>
-            <a href="/privacy-policy" class="hover:text-blue-400 transition"
-              >Política de Privacidad</a>
+            <a href={privacyUrl} class="hover:text-blue-400 transition">{privacyText}</a>
           </li>
         </ul>
       </div>
 
-      <!-- 🔹 Sección 2: Redes sociales -->
+      <!-- Sección 2: Redes sociales -->
       <div class="flex justify-center space-x-6">
         <a
-          href="https://facebook.com"
+          href={facebookUrl}
           target="_blank"
           class="hover:text-blue-400 transition"
-          aria-label="Ir a Facebook"
+          aria-label={`Ir a ${facebookUrl.split('/')[2]}`}
+          rel="noopener noreferrer"
         >
           <FacebookIcon class="w-6 h-6 text-white" />
         </a>
         <a
-          href="https://twitter.com"
+          href={twitterUrl}
           target="_blank"
           class="hover:text-blue-400 transition"
-          aria-label="Ir a Twitter"
+          aria-label={`Ir a ${twitterUrl.split('/')[2]}`}
+          rel="noopener noreferrer"
         >
           <TwitterIcon class="w-6 h-6 text-white" />
         </a>
         <a
-          href="https://instagram.com"
+          href={instagramUrl}
           target="_blank"
           class="hover:text-blue-400 transition"
-          aria-label="Ir a Instagram"
+          aria-label={`Ir a ${instagramUrl.split('/')[2]}`}
+          rel="noopener noreferrer"
         >
           <InstagramIcon class="w-6 h-6 text-white" />
         </a>
         <a
-          href="https://github.com"
+          href={tiktokUrl}
           target="_blank"
           class="hover:text-blue-400 transition"
-          aria-label="Ir a GitHub"
+          aria-label={`Ir a ${tiktokUrl.split('/')[2]}`}
+          rel="noopener noreferrer"
         >
           <TiktokIcon class="w-6 h-6 text-white" />
         </a>
       </div>
 
-      <!-- 🔹 Sección 3: Créditos del desarrollador -->
+      <!-- Sección 3: Créditos del desarrollador -->
       <div class="text-center md:text-right">
         <p class="text-sm">
-          Desarrollado por <span class="font-semibold text-white"
-            >Juan Amieva</span>
+          Desarrollado por <span class="font-semibold text-white">{creditsDeveloper}</span>
         </p>
-        <p class="text-sm">© 2025 Todos los derechos reservados.</p>
+        <p class="text-sm">© {creditsYear} {creditsText}</p>
       </div>
     </div>
   </div>

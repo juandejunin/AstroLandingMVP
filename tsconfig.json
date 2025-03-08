@@ -1,40 +1,57 @@
+// {
+//   "extends": "astro/tsconfigs/strict",
+//   "include": [
+//     ".astro/types.d.ts",
+//     "**/*"
+//   ],
+//   "exclude": [
+//     "dist"
+//   ],
+//   "compilerOptions": {
+//     "esModuleInterop": true,
+//     "allowSyntheticDefaultImports": true,
+//     "moduleResolution": "node",
+//     "jsx": "react-jsx",
+//     "jsxImportSource": "react",
+
+
+//     "baseUrl": ".",
+//     "paths": {
+//       "@components/*": [
+//         "src/components/*"
+//       ],
+//       "@ui/*": [
+//         "src/components/ui/*"
+//       ],
+//       "@layouts/*": [
+//         "src/layouts/*"
+//       ],
+//       "@icons/*": [
+//         "src/icons/*"
+//       ],
+//     }
+//   }
+// }
+
 {
   "extends": "astro/tsconfigs/strict",
   "include": [
     ".astro/types.d.ts",
-    "**/*"
+    "**/*.ts",  // Incluye archivos TypeScript
+    "**/*.tsx"  // Incluye archivos TSX (si los usas en el futuro)
   ],
   "exclude": [
-    "dist"
+    "dist",        // Excluye el directorio de salida
+    "**/*.astro"   // Excluye archivos .astro para evitar que TypeScript los procese
   ],
   "compilerOptions": {
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
-    "jsx": "react-jsx",
-    "jsxImportSource": "react",
-
-
     "baseUrl": ".",
     "paths": {
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@ui/*": [
-        "src/components/ui/*"
-      ],
-      "@layouts/*": [
-        "src/layouts/*"
-      ],
-      "@icons/*": [
-        "src/icons/*"
-      ],
-      "@lib/*": [
-        "src/lib/*"
-      ],
-      "@types": [
-        "src/types.ts"
-      ]
+      "@components/*": ["src/components/*"],
+      "@ui/*": ["src/components/ui/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@icons/*": ["src/icons/*"]
     }
   }
 }

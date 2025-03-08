@@ -3,39 +3,59 @@ import Layout from "../layouts/Layout.astro";
 import Detall from "@components/Detall.astro";
 import Footer from "../components/Footer.astro";
 import MastHead from "../components/MastHead.astro";
-import Register from "../components/register";
 import { loadEnv } from "vite";
 
 const env = loadEnv(process.env.NODE_ENV || "production", process.cwd(), "");
-const apiUrl = `${env.BACKEND_URL || 'https://tusistema.es'}/api/users/visits/track`;
-const registerUrl = `${env.BACKEND_URL || 'https://tusistema.es'}/api/users/register`;
+const googleFormUrl = env.GOOGLE_FORM_URL || "https://forms.gle/default";
+const buttonText = env.BUTTON_TEXT || "Completar Formulario";
+const primaryColor = env.PRIMARY_COLOR || "#007BFF";
+const heroTitle = env.HERO_TITLE || "5 secretos de los Funnels para optimizar tu negocio";
+const heroDescription = env.HERO_DESCRIPTION || "Descarga esta guía gratuita y atrae más clientes hoy.";
+const detallTitle = env.DETALL_TITLE || "Optimiza tu negocio con nuestra estrategia";
+const detallDescription = env.DETALL_DESCRIPTION || "Descubre cómo nuestra landing page optimizada puede ayudarte a capturar más leads y aumentar tus conversiones. Empieza hoy y lleva tu estrategia al siguiente nivel.";
+const detallButtonText = env.DETALL_BUTTON_TEXT || "Empieza Ahora";
+const footerLegalTitle = env.FOOTER_LEGAL_TITLE || "Legal";
+const footerTermsText = env.FOOTER_TERMS_TEXT || "Términos y Condiciones";
+const footerTermsUrl = env.FOOTER_TERMS_URL || "/terms-and-conditions";
+const footerPrivacyText = env.FOOTER_PRIVACY_TEXT || "Política de Privacidad";
+const footerPrivacyUrl = env.FOOTER_PRIVACY_URL || "/privacy-policy";
+const footerFacebookUrl = env.FOOTER_FACEBOOK_URL || "https://facebook.com";
+const footerTwitterUrl = env.FOOTER_TWITTER_URL || "https://twitter.com";
+const footerInstagramUrl = env.FOOTER_INSTAGRAM_URL || "https://instagram.com";
+const footerTiktokUrl = env.FOOTER_TIKTOK_URL || "https://tiktok.com";
+const footerCreditsDeveloper = env.FOOTER_CREDITS_DEVELOPER || "Juan Amieva";
+const footerCreditsYear = env.FOOTER_CREDITS_YEAR || "2025";
+const footerCreditsText = env.FOOTER_CREDITS_TEXT || "Todos los derechos reservados";
 ---
 
 <Layout>
-  <MastHead />
-  <Detall />
-  <Register apiUrl={registerUrl} client:visible />
-  <Footer />
-
-  <script define:vars={{ apiUrl }}>
-    console.log('Intentando registrar visita en:', apiUrl);
-    fetch(apiUrl, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(response => {
-        console.log('Estado de la respuesta:', response.status, response.statusText);
-        if (!response.ok) throw new Error(`Error en la respuesta: ${response.status} ${response.statusText}`);
-        return response.json();
-      })
-      .then(data => {
-        console.log('Datos recibidos:', data);
-        console.log(`Visitas registradas: ${data.visits}`);
-      })
-      .catch(error => {
-        console.error('Error detallado al registrar visita:', error);
-      });
-  </script>
+  <MastHead 
+    googleFormUrl={googleFormUrl} 
+    buttonText={buttonText} 
+    primaryColor={primaryColor} 
+    heroTitle={heroTitle} 
+    heroDescription={heroDescription} 
+  />
+  <Detall 
+    googleFormUrl={googleFormUrl} 
+    buttonText={buttonText} 
+    primaryColor={primaryColor} 
+    detallTitle={detallTitle}
+    detallDescription={detallDescription}
+    detallButtonText={detallButtonText}
+  />
+  <Footer 
+    footerLegalTitle={footerLegalTitle}
+    footerTermsText={footerTermsText}
+    footerTermsUrl={footerTermsUrl}
+    footerPrivacyText={footerPrivacyText}
+    footerPrivacyUrl={footerPrivacyUrl}
+    footerFacebookUrl={footerFacebookUrl}
+    footerTwitterUrl={footerTwitterUrl}
+    footerInstagramUrl={footerInstagramUrl}
+    footerTiktokUrl={footerTiktokUrl}
+    footerCreditsDeveloper={footerCreditsDeveloper}
+    footerCreditsYear={footerCreditsYear}
+    footerCreditsText={footerCreditsText}
+  />
 </Layout>

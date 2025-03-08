@@ -1,23 +1,31 @@
-<header
-  class="masthead bg-primary bg-center bg-no-repeat bg-scroll relative min-h-screen w-full flex items-center justify-center text-center"
->
+---
+const { googleFormUrl, buttonText, primaryColor, heroTitle, heroDescription } = Astro.props;
+
+// Definir el título y la descripción con valores por defecto
+const title = heroTitle || "5 secretos de los Funnels para optimizar tu negocio";
+const description = heroDescription || "Descarga esta guía gratuita y atrae más clientes hoy.";
+---
+
+<header class="masthead bg-primary bg-center bg-no-repeat bg-scroll relative min-h-screen w-full flex items-center justify-center text-center">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-full">
     <div class="flex items-center justify-center h-full text-center flex-col">
       <div class="lg:w-2/3 w-full text-center">
-        <h1
-          class="text-4xl sm:text-5xl font-bold text-white mb-4 md:text-3xl lg:text-4xl xl:text-5xl"
-        >
-          5 secretos de los <span class="text-light">Funnels</span> para optimizar tu negocio
+        <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4 md:text-3xl lg:text-4xl xl:text-5xl">
+          {title}
         </h1>
       </div>
       <hr class="mx-auto w-12 h-1 bg-white border-0 mb-6" />
-      <p class="text-white opacity-75 mb-5 md:text-xl">
-        Descarga esta guía gratuita y atrae más clientes hoy.
-      </p>
+      <p class="text-white opacity-75 mb-5 md:text-xl">{description}</p>
       <a
-        class="btn btn-primary btn-xl bg-light text-black px-6 py-3 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-blue-700 mt-14"
-        href="#formulario">Accede a la guía</a
+        href={googleFormUrl}
+        class="btn btn-primary btn-xl text-black px-6 py-3 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-blue-700 mt-14"
+        style={`background-color: ${primaryColor};`}
+        aria-label={buttonText}
+        target="_blank"
+        rel="noopener noreferrer"
       >
+        {buttonText}
+      </a>
     </div>
   </div>
 </header>
